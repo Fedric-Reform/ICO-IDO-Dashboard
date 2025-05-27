@@ -4,7 +4,7 @@
   "description": "Web scraper test",
   "main": "index.js",
   "scripts": {
-    "start": "node upcomingico2.js",
+    "start": "node upcoming.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Krzysztof Buchacz",
