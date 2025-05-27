@@ -21,8 +21,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run upcomingico.js
-        run: node upcomingico.js
+      - name: Run upcoming.js
+        run: node upcoming.js
 
       - name: Commit output (optional)
         run: |
