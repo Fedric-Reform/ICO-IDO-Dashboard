@@ -24,11 +24,12 @@ jobs:
       - name: Run upcoming.js
         run: node upcoming.js
 
-      - name: Commit output (optional)
+      - name: Commit and push output
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
           git commit -m "Update scraped ICO data"
-          git push
-        continue-on-error: true  # Avoid failure if there's nothing to commit
+          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }} HEAD:main
+        continue-on-error: true
+
