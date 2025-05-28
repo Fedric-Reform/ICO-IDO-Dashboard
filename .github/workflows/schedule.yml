@@ -24,12 +24,27 @@ jobs:
       - name: Run upcoming.js
         run: node upcoming.js
 
-      - name: Commit and push output
+      - name: Commit and Push Changes
+        env:
+          GITHUB_PAT: ${{ secrets.GH_PAT }}
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "Update scraped ICO data"
-          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }} HEAD:main
-        continue-on-error: true
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git fetch origin
+          
+          if git show-ref --verify --quiet refs/remotes/origin/main; then
+            git checkout main
+          else
+            git checkout -b data
+            git push origin main
+          fi
+          
+          git add . 
+          git commit -m "Automated update - $(date)" || echo "No changes to commit"
+
+          git stash push --include-untracked
+          git pull --rebase origin main
+          git stash pop || echo "No changes to stash"
+
+          git push origin main
 
