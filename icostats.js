@@ -1,5 +1,7 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
+const fs = require("fs");
+const path = require("path");
 
 async function scrapeICOStats() {
   const url = "https://icodrops.com/ico-stats/?page=1&paginate=10000";
@@ -47,7 +49,11 @@ async function scrapeICOStats() {
     projects.push(project);
   });
   // Determine all unique keys for CSV headers
-  const allKeys = Array.from(new Set(rows.flatMap(obj => Object.keys(obj))));
+  const allKeys = Array.from(new Set(projects.flatMap(obj => Object.keys(obj))));
+  const csvBody = projects.map(r =>
+  allKeys.map(k => `"${(r[k] ?? "").replace(/"/g, '""')}"`).join(",")
+  ).join("\n");
+
 
   // Create CSV
   const csvHeader = allKeys.join(",") + "\n";
