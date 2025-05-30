@@ -50,10 +50,6 @@ async function scrapeICOStats() {
   });
   // Determine all unique keys for CSV headers
   const allKeys = Array.from(new Set(projects.flatMap(obj => Object.keys(obj))));
-  const csvBody = projects.map(r =>
-  allKeys.map(k => `"${(r[k] ?? "").replace(/"/g, '""')}"`).join(",")
-  ).join("\n");
-
 
   // Create CSV
   const csvHeader = allKeys.join(",") + "\n";
