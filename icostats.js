@@ -37,7 +37,7 @@ async function scrapeICOStats() {
 
     investors.forEach((inv, i) => {
       project[`investor_${i + 1}`] = inv;
-	});
+    });
 
     project.investors = investors;
 
@@ -48,16 +48,16 @@ async function scrapeICOStats() {
 
     projects.push(project);
   });
+
   // Determine all unique keys for CSV headers
   const allKeys = Array.from(new Set(projects.flatMap(obj => Object.keys(obj))));
-  const csvBody = rows.map(r =>
+
+  const csvBody = projects.map(r =>
     allKeys.map(k => `"${(r[k] ?? "").replace(/"/g, '""')}"`).join(",")
   ).join("\n");
 
-	
-  // Create CSV
   const csvHeader = allKeys.join(",") + "\n";
-  
+
   // Save to file
   const outputPath = path.join(__dirname, "icostats.csv");
   fs.writeFileSync(outputPath, csvHeader + csvBody);
