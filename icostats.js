@@ -61,8 +61,4 @@ async function scrapeICOStats() {
   console.log(`✅ Saved to ${outputPath}`);
 }
 
-
-  console.log(JSON.stringify(projects, null, 2));
-}
-
 scrapeICOStats().catch(console.error);
