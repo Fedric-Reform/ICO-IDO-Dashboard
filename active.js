@@ -50,7 +50,7 @@ async function scrapeICOStats() {
   ).join("\n");
 
   // Save to file
-  const outputPath = path.join(__dirname, "active_ico.csv");
+  const outputPath = path.join(__dirname, "active.csv");
   fs.writeFileSync(outputPath, csvHeader + csvBody);
   console.log(`✅ Saved to ${outputPath}`);
 }
