@@ -2,7 +2,7 @@ name: Run Upcoming ICO Scraper
 
 on:
   schedule:
-    - cron: "*/180 * * * *"  # Every 180 minutes
+    - cron: "*/5 * * * *"  # Every 180 minutes
     # - cron: "0 8 * * *"  # Runs every day at 8 AM UTC
   # workflow_dispatch:     # Allow manual trigger
 
@@ -24,6 +24,12 @@ jobs:
 
       - name: Run upcoming.js
         run: node upcoming.js
+
+      - name: Run active.js
+        run: node active.js
+      
+      - name: Run icostats.js
+        run: node icostats.js
 
       - name: Setup Git Config
         run: |
