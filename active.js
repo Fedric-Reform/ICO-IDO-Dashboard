@@ -1,5 +1,7 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
+const fs = require("fs");
+const path = require("path");
 
 async function scrapeICOStats() {
   const url = "https://icodrops.com/category/active-ico/?page=1&paginate=10000";
