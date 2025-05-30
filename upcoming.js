@@ -23,7 +23,7 @@ async function scrapeICOStats() {
       round: $row.find(".Tbl-Row__item--round").text().trim() || null,
       total_raised: $row.find(".Tbl-Row__item--raised").text().trim() || null,
       pre_valuation: $row.find(".Tbl-Row__item--pre-valuation").text().trim() || null,
-      categories: $row.find(".Tbl-Row__item--category").text().trim() || null,
+      categories: $row.find(".Tbl-Row__item--categories").text().trim() || null,
       date: $row.find(".Tbl-Row__item--date").text().trim() || null,
       ecosystem: $row.find(".Tbl-Row__item--ecosystem").text().trim() || null
     };
